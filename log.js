@@ -9,7 +9,7 @@ module.exports = function log(dot, opts) {
   }
 
   dot("set.log", opts)
-  dot.onAny("log", logger.bind(dot.state))
+  dot.onAny("log", logger)
 
   return dot
 }
@@ -19,8 +19,7 @@ function logger(o) {
     opts = o.opts || {},
     props = o.props.slice(1)
 
-  var message =
-    typeof opts === "string" ? opts : opts.message
+  var message = opts.message || opts
 
   var out = []
 
@@ -50,7 +49,7 @@ function logger(o) {
   }
 
   if (message) {
-    out.push(message)
+    out.push(JSON.stringify(message))
   }
 
   // eslint-disable-next-line no-console
