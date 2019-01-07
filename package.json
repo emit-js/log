@@ -13,7 +13,7 @@
   },
   "license": "MIT",
   "homepage": "https://github.com/dot-event/log2#readme",
-  "main": "dot.js",
+  "main": "log.js",
   "scripts": {
     "fix": "npm run lint -- --fix",
     "lint": "eslint --ignore-path .gitignore --ext=js .",
@@ -21,7 +21,6 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@dot-event/store": "next",
     "dot-event": "next",
     "eslint": "5.9.0",
     "eslint-config-prettier": "3.3.0",

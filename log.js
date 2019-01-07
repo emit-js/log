@@ -14,11 +14,11 @@ var levels = Object.keys(levelEmojis)
 module.exports = function log(dot, opts) {
   opts = opts || {}
 
-  if (dot("get.log")) {
+  if (dot.state.log) {
     return dot
   }
 
-  dot("set.log", opts)
+  dot.state.log = opts
 
   dot.onAny("before", logAll)
   dot.onAny("log", logger)
