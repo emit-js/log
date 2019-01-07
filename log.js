@@ -21,7 +21,7 @@ function logger(o) {
 
   var message = opts.message || opts
 
-  var out = []
+  var out = [new Date().toISOString()]
 
   // prettier-ignore
   out.push(
@@ -37,8 +37,6 @@ function logger(o) {
               ? "⚠️ "
               : ""
   )
-
-  out.push(new Date().toISOString())
 
   if (opts.ns) {
     out.push(opts.ns)
