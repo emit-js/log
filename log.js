@@ -20,36 +20,34 @@ module.exports = function log(dot, opts) {
 
   dot.state.log = opts
 
-  dot.onAny("before", logAll)
-  dot.onAny("log", logger)
+  dot.any("before", logAll)
+  dot.any("log", logger)
 
   return dot
 }
 
-function logAll(o) {
-  var dot = o.dot,
-    ns = o.ns,
-    opts = o.opts,
-    prop = o.prop
+function logAll(arg, opts) {
+  var dot = opts.dot,
+    ns = opts.ns,
+    prop = opts.prop
 
   if (ns === "log") {
     return
   }
 
-  dot("log", prop, { message: opts, ns: ns })
+  dot("log", prop, { message: arg, ns: ns })
 }
 
-function logger(o) {
+function logger(arg, opts) {
   var level = "info",
-    opts = o.opts || {},
-    props = o.props
+    propArr = opts.propArr
 
-  if (levels.indexOf(o.props[0]) > -1) {
-    level = o.props[0]
-    props = o.props.slice(1)
+  if (levels.indexOf(propArr[0]) > -1) {
+    level = propArr[0]
+    propArr = propArr.slice(1)
   }
 
-  var message = opts.message || opts
+  var message = opts.message || arg
 
   var out = [new Date().toISOString(), levelEmojis[level]]
 
@@ -57,8 +55,8 @@ function logger(o) {
     out.push(opts.ns)
   }
 
-  if (props.length) {
-    out.push(props.join("."))
+  if (propArr.length) {
+    out.push(propArr.join("."))
   }
 
   if (message) {
