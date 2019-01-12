@@ -28,14 +28,14 @@ module.exports = function log(dot, opts) {
 
 function logAll(arg, opts) {
   var dot = opts.dot,
-    ns = opts.ns,
+    event = opts.event,
     prop = opts.prop
 
-  if (ns === "log") {
+  if (event === "log") {
     return
   }
 
-  dot("log", prop, { message: arg, ns: ns })
+  dot("log", prop, { event: event, message: arg })
 }
 
 function logger(arg, opts) {
@@ -51,8 +51,8 @@ function logger(arg, opts) {
 
   var out = [new Date().toISOString(), levelEmojis[level]]
 
-  if (opts.ns) {
-    out.push(opts.ns)
+  if (opts.event) {
+    out.push(opts.event)
   }
 
   if (propArr.length) {

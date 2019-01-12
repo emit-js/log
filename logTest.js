@@ -12,6 +12,9 @@ test("log", function() {
   dot("log.debug")
   dot("log.error", "test")
   dot("log.info", "test", "hi")
-  dot("log.trace", "test", { message: "hi", ns: "ns" })
+  dot("log.trace", "test", {
+    event: "event",
+    message: "hi",
+  })
   dot("log.warn", "test", "hi")
 })
