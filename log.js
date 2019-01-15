@@ -12,25 +12,18 @@ var levelEmojis = {
 var levels = Object.keys(levelEmojis)
 
 module.exports = function log(dot, opts) {
-  opts = opts || {}
-
   if (dot.state.log) {
-    return dot
+    return
   }
 
+  opts = opts || {}
   dot.state.log = opts
 
   dot.any("before", logAll)
   dot.any("log", logger)
-
-  return dot
 }
 
-function logAll(arg, opts) {
-  var dot = opts.dot,
-    event = opts.event,
-    prop = opts.prop
-
+function logAll(prop, arg, dot, event) {
   if (event === "log") {
     return
   }
@@ -38,25 +31,24 @@ function logAll(arg, opts) {
   dot("log", prop, { event: event, message: arg })
 }
 
-function logger(arg, opts) {
-  var level = "info",
-    propArr = opts.propArr
+function logger(prop, arg, dot, event) {
+  var level = "info"
 
-  if (levels.indexOf(propArr[0]) > -1) {
-    level = propArr[0]
-    propArr = propArr.slice(1)
+  if (levels.indexOf(prop[0]) > -1) {
+    level = prop[0]
+    prop = prop.slice(1)
   }
 
-  var message = opts.message || arg
+  var message = arg.message || arg
 
   var out = [new Date().toISOString(), levelEmojis[level]]
 
-  if (opts.event) {
-    out.push(opts.event)
+  if (event) {
+    out.push(event)
   }
 
-  if (propArr.length) {
-    out.push(propArr.join("."))
+  if (prop.length) {
+    out.push(prop.join("."))
   }
 
   if (message) {
