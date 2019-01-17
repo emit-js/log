@@ -31,7 +31,7 @@ function logAll(prop, arg, dot, event) {
   dot("log", prop, { event: event, message: arg })
 }
 
-function logger(prop, arg, dot, event) {
+function logger(prop, arg, dot, e) {
   var level = "info"
 
   if (levels.indexOf(prop[0]) > -1) {
@@ -40,6 +40,7 @@ function logger(prop, arg, dot, event) {
   }
 
   var message = arg.message || arg
+  var event = arg.event || e
 
   var out = [new Date().toISOString(), levelEmojis[level]]
 
