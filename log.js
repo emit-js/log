@@ -19,7 +19,7 @@ module.exports = function log(dot, opts) {
   opts = opts || {}
   dot.state.log = opts
 
-  dot.any("before", logAll)
+  dot.beforeAny(logAll)
   dot.any("log", logger)
 }
 

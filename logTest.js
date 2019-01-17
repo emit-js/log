@@ -17,4 +17,5 @@ test("log", function() {
     message: "hi",
   })
   dot("log.warn", "test", "hi")
+  dot("anything")
 })
