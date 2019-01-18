@@ -17,15 +17,19 @@ var levelSpaces = {
   warn: " ",
 }
 
-var levels = Object.keys(levelEmojis)
+var levels = ["debug", "trace", "info", "warn", "error"]
 
 module.exports = function log(dot, opts) {
   if (dot.state.log) {
     return
   }
 
-  opts = opts || {}
-  dot.state.log = opts
+  dot.state.log = Object.assign(
+    {
+      level: "info",
+    },
+    opts
+  )
 
   dot.beforeAny(logAll)
   dot.any("log", logger)
@@ -36,15 +40,23 @@ function logAll(prop, arg, dot, event) {
     return
   }
 
-  dot("log", prop, { event: event, message: arg })
+  dot("log", arg.level, prop, {
+    event: event,
+    message: arg,
+  })
 }
 
 function logger(prop, arg, dot, e) {
-  var level = "info"
+  var level = "info",
+    state = dot.state.log
 
   if (levels.indexOf(prop[0]) > -1) {
     level = prop[0]
     prop = prop.slice(1)
+  }
+
+  if (levels.indexOf(level) < levels.indexOf(state.level)) {
+    return
   }
 
   var custom = arg.event || arg.message
