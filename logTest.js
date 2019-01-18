@@ -5,7 +5,7 @@ var dot = require("dot-event")(),
 
 beforeEach(function() {
   dot.reset()
-  log(dot)
+  log(dot, { level: "debug" })
 })
 
 test("log", function() {

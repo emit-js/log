@@ -33,7 +33,7 @@ module.exports = function log(dot, opts) {
   )
 
   dot.beforeAny(logAll)
-  dot.any("log", logger)
+  dot.beforeAny("log", logger)
 }
 
 function logAll(prop, arg, dot, event) {
