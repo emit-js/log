@@ -4,9 +4,17 @@
 var levelEmojis = {
   debug: "🐛",
   error: "🛑",
-  info: "ℹ️ ",
+  info: "ℹ️",
   trace: "💻",
-  warn: "⚠️ ",
+  warn: "⚠️",
+}
+
+var levelSpaces = {
+  debug: "",
+  error: "",
+  info: " ",
+  trace: "",
+  warn: " ",
 }
 
 var levels = Object.keys(levelEmojis)
@@ -39,13 +47,19 @@ function logger(prop, arg, dot, e) {
     prop = prop.slice(1)
   }
 
-  var message = arg.message || arg
-  var event = arg.event || e
+  var custom = arg.event || arg.message
+  var message = custom ? arg.message : arg
+  var event = custom ? arg.event : e
+  var space =
+    typeof process === undefined ? "" : levelSpaces[level]
 
-  var out = [new Date().toISOString(), levelEmojis[level]]
+  var out = [
+    new Date().toISOString(),
+    levelEmojis[level] + space,
+  ]
 
   if (event) {
-    out.push(event)
+    out.push("[" + event + "]")
   }
 
   if (prop.length) {
