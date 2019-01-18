@@ -27,6 +27,7 @@ module.exports = function log(dot, opts) {
   dot.state.log = Object.assign(
     {
       level: "info",
+      levels: {},
     },
     opts
   )
@@ -40,28 +41,38 @@ function logAll(prop, arg, dot, event) {
     return
   }
 
-  dot("log", arg.level, prop, {
+  var level = arg ? arg.level : undefined
+
+  dot("log", level, prop, {
     event: event,
     message: arg,
   })
 }
 
 function logger(prop, arg, dot, e) {
-  var level = "info",
+  var custom = arg.event || arg.message,
+    level = "info",
     state = dot.state.log
+
+  var event = custom ? arg.event : e,
+    message = custom ? arg.message : arg
 
   if (levels.indexOf(prop[0]) > -1) {
     level = prop[0]
     prop = prop.slice(1)
   }
 
-  if (levels.indexOf(level) < levels.indexOf(state.level)) {
+  var fakeLevel = level,
+    levelIndex = levels.indexOf(state.level)
+
+  if (state.levels[event]) {
+    fakeLevel = state.levels[event][level] || level
+  }
+
+  if (levels.indexOf(fakeLevel) < levelIndex) {
     return
   }
 
-  var custom = arg.event || arg.message
-  var message = custom ? arg.message : arg
-  var event = custom ? arg.event : e
   var space =
     typeof window === "undefined" ? levelSpaces[level] : ""
 
