@@ -51,7 +51,7 @@ function logger(prop, arg, dot, e) {
   var message = custom ? arg.message : arg
   var event = custom ? arg.event : e
   var space =
-    typeof process === undefined ? "" : levelSpaces[level]
+    typeof window === "undefined" ? levelSpaces[level] : ""
 
   var out = [
     new Date().toISOString(),
