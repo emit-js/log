@@ -53,7 +53,7 @@ function logger(prop, arg, dot, e) {
   }
 
   if (message) {
-    out.push(JSON.stringify(message))
+    out.push(message)
   }
 
   // eslint-disable-next-line no-console
