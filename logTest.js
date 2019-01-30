@@ -9,13 +9,13 @@ beforeEach(function() {
 })
 
 test("log", function() {
-  dot("log.debug", {})
-  dot("log.error", "test")
-  dot("log.info", "test", "hi")
-  dot("log.trace", "test", {
+  dot("log", "debug")
+  dot("log", "error", "test")
+  dot("log", "info", "test", "hi")
+  dot("log", "trace", "test", {
     event: "event",
     message: "hi",
   })
-  dot("log.warn", "test", "hi")
-  dot("anything", {})
+  dot("log", "warn", "test", "hi")
+  dot("anything")
 })

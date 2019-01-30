@@ -50,6 +50,10 @@ function logAll(prop, arg, dot, event) {
 }
 
 function logger(prop, arg, dot, e) {
+  if (!arg) {
+    arg = prop.pop()
+  }
+
   var custom = arg.event || arg.message,
     level = "info",
     state = dot.state.log
