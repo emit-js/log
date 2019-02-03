@@ -32,8 +32,8 @@ module.exports = function log(dot, opts) {
     opts
   )
 
-  dot.beforeAny(logAll)
-  dot.beforeAny("log", logger)
+  dot.any(logAll)
+  dot.any("log", logger)
 }
 
 function logAll(prop, arg, dot, event) {
