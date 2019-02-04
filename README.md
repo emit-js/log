@@ -33,9 +33,9 @@ require("@dot-event/log")(dot, { level: "debug" })
 
 ## Automatic logging
 
-By default, the logger logs any event at log level `info`.
+By default, the logger logs any and all events at log level `info`.
 
-If your event is very noisy, you might want to opt to make `info` logs into `debug` for that particular event:
+If your event is very noisy, you might want to opt to alias `info` logs to `debug` for that particular event:
 
 ```js
 dot.state.log.levels.myEvent = { info: "debug" }
