@@ -1,6 +1,6 @@
 # @dot-event/log
 
-dot-event logger
+[dot-event](https://github.com/dot-event/dot-event2#readme) logger
 
 ![dots](dots.gif)
 
