@@ -1,6 +1,6 @@
 # @dot-event/log
 
-[dot-event](https://github.com/dot-event/dot-event2#readme) logger
+[dot-event](https://github.com/dot-event/dot-event#readme) logger
 
 ![dots](dots.gif)
 
@@ -12,7 +12,7 @@ npm install dot-event @dot-event/log
 
 ## Setup
 
-Add the logger right after you initialize your [dot-event](https://github.com/dot-event/dot-event2) instance:
+Add the logger right after you initialize your [dot-event](https://github.com/dot-event/dot-event) instance:
 
 ```js
 const dot = require("dot-event")()
