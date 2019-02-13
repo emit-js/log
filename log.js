@@ -97,7 +97,14 @@ function logger(prop, arg, dot, e) {
   }
 
   if (message) {
-    out.push(message)
+    if (
+      typeof message === "function" &&
+      typeof window === undefined
+    ) {
+      out.push("[Function]")
+    } else {
+      out.push(message)
+    }
   }
 
   // eslint-disable-next-line no-console
