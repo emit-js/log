@@ -27,7 +27,6 @@ module.exports = function log(dot, opts) {
   dot.state.log = Object.assign(
     {
       level: "info",
-      levels: {},
     },
     opts
   )
@@ -69,8 +68,12 @@ function logger(prop, arg, dot, e) {
   var fakeLevel = level,
     levelIndex = levels.indexOf(state.level)
 
-  if (state.levels[event]) {
-    fakeLevel = state.levels[event][level] || level
+  if (state[event]) {
+    fakeLevel = state[event][level] || level
+
+    if (state[event].forceArg && !message) {
+      message = prop.pop()
+    }
   }
 
   if (levels.indexOf(fakeLevel) < levelIndex) {
