@@ -99,7 +99,7 @@ function logger(prop, arg, dot, e) {
   if (message) {
     if (
       typeof message === "function" &&
-      typeof window === undefined
+      typeof window === "undefined"
     ) {
       out.push("[Function]")
     } else {
