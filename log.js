@@ -71,7 +71,10 @@ function logger(prop, arg, dot, e) {
   if (state[event]) {
     fakeLevel = state[event][level] || level
 
-    if (state[event].forceArg && !message) {
+    if (
+      state[event].forceArg &&
+      typeof message === "undefined"
+    ) {
       message = prop.pop()
     }
   }
