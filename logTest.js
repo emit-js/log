@@ -1,10 +1,10 @@
 /* eslint-env jest */
 
-var dot = require("dot-event")(),
+var dot,
   log = require("./log")
 
 beforeEach(function() {
-  dot.reset()
+  dot = require("dot-event")()
   log(dot, { level: "debug" })
 })
 
