@@ -38,11 +38,11 @@ By default, the logger logs any and all events at log level `info`.
 If your event is very noisy, you might want to opt to alias `info` logs to `debug` for that particular event:
 
 ```js
-dot.state.log.myEvent = { info: "debug" }
+dot("logLevel", "myEvent", { info: "debug" })
 ```
 
 ## Manual logging
 
 ```js
-dot.log("warn", "some scary message here")
+dot.log("warn", { arg: "some scary message here" })
 ```

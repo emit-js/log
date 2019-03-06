@@ -14,6 +14,7 @@ function logLevel(prop, arg, dot) {
 
   if (prop.length) {
     state.events[prop[0]] = Object.assign(
+      {},
       state.events[prop[0]],
       arg
     )
