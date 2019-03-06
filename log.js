@@ -19,41 +19,24 @@ var levelSpaces = {
 
 var levels = ["debug", "trace", "info", "warn", "error"]
 
-module.exports = function log(dot, opts) {
-  if (dot.state.log) {
+module.exports = function(dot) {
+  if (dot.log) {
     return
   }
 
-  dot.state.log = Object.assign(
-    {
-      level: "info",
-    },
-    opts
-  )
-
-  dot.any(logAll)
-  dot.any("log", logger)
-}
-
-function logAll(prop, arg, dot, event) {
-  if (event === "log") {
-    return
+  dot.state.log = {
+    events: {},
+    level: "info",
   }
 
-  var level = arg ? arg.level : undefined
+  require("./logAny")(dot)
+  require("./logLevel")(dot)
 
-  dot("log", level, prop, {
-    event: event,
-    message: arg,
-  })
+  dot.any("log", log)
 }
 
-function logger(prop, arg, dot, e) {
-  if (!arg) {
-    arg = prop.pop()
-  }
-
-  var custom = arg.event || arg.message,
+function log(prop, arg, dot, e) {
+  var custom = arg && (arg.event || arg.message),
     level = "info",
     state = dot.state.log
 
@@ -68,11 +51,11 @@ function logger(prop, arg, dot, e) {
   var fakeLevel = level,
     levelIndex = levels.indexOf(state.level)
 
-  if (state[event]) {
-    fakeLevel = state[event][level] || level
+  if (state.events[event]) {
+    fakeLevel = state.events[event][level] || level
 
     if (
-      state[event].forceArg &&
+      state.events[event].forceArg &&
       typeof message === "undefined"
     ) {
       message = prop.pop()
