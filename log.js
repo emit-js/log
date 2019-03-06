@@ -25,7 +25,9 @@ module.exports = function(dot) {
   }
 
   dot.state.log = {
-    events: {},
+    events: {
+      logLevel: { info: "debug" },
+    },
     level: "info",
   }
 
