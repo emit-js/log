@@ -25,7 +25,7 @@ This creates the `dot.log` emitter.
 
 There are five log levels: `debug`, `trace`, `info`, `warn`, and `error`.
 
-By default, the logger only logs `info` or above, but change that with `logLevel`:
+By default, the logger only logs `info` or above, but you can change that with `logLevel`:
 
 ```js
 dot("logLevel", { info: "debug" })
