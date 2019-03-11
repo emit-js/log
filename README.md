@@ -25,10 +25,10 @@ This creates the `dot.log` emitter.
 
 There are five log levels: `debug`, `trace`, `info`, `warn`, and `error`.
 
-By default, the logger only logs `info` or above, but you can change that with a composer option:
+By default, the logger only logs `info` or above, but you can change that:
 
 ```js
-require("@dot-event/log")(dot, { level: "debug" })
+dot("logLevel", { info: "debug" })
 ```
 
 ## Automatic logging
