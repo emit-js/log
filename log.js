@@ -28,7 +28,7 @@ module.exports = function(dot) {
     events: {
       logLevel: { info: "debug" },
     },
-    level: "info",
+    level: "warn",
   }
 
   require("./logAny")(dot)
