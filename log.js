@@ -69,11 +69,13 @@ function log(prop, arg, dot, e) {
   }
 
   var space =
-    typeof window === "undefined" ? levelSpaces[level] : ""
+    typeof window === "undefined"
+      ? levelSpaces[fakeLevel]
+      : ""
 
   var out = [
     new Date().toISOString(),
-    levelEmojis[level] + space,
+    levelEmojis[fakeLevel] + space,
   ]
 
   if (event) {
