@@ -11,9 +11,10 @@ function logAny(prop, arg, dot, event) {
   }
 
   var level = arg ? arg.level : undefined
+  var message = arg ? arg.message || arg : arg
 
   dot("log", level, prop, {
     event: event,
-    message: arg,
+    message: message,
   })
 }
