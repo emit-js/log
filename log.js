@@ -39,12 +39,11 @@ module.exports = function(dot) {
 }
 
 function log(prop, arg, dot, e) {
-  var custom = arg && (arg.event || arg.message),
-    level = "info",
-    state = dot.state.log
+  var state = dot.state.log
 
-  var event = custom ? arg.event : e,
-    message = custom ? arg.message : arg
+  var event = arg && arg.event ? arg.event : e,
+    level = arg && arg.level ? arg.level : state.level,
+    message = arg && arg.message ? arg.message : arg
 
   if (levels.indexOf(prop[0]) > -1) {
     level = prop[0]
