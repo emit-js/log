@@ -28,7 +28,7 @@ module.exports = function(dot) {
     events: {
       logLevel: { info: "debug" },
     },
-    level: "warn",
+    level: defaultLevel(),
     levels: levels,
   }
 
@@ -99,4 +99,12 @@ function log(prop, arg, dot, e) {
 
   // eslint-disable-next-line no-console
   console.log.apply(null, out)
+}
+
+function defaultLevel() {
+  return typeof process !== "undefined" &&
+    process.env &&
+    process.env.LEVEL
+    ? process.env.LEVEL
+    : "warn"
 }
