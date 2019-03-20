@@ -106,5 +106,5 @@ function defaultLevel() {
     process.env &&
     process.env.LEVEL
     ? process.env.LEVEL
-    : "warn"
+    : "info"
 }
