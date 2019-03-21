@@ -43,7 +43,8 @@ function log(prop, arg, dot, e) {
 
   var event = arg && arg.event ? arg.event : e,
     level = arg && arg.level ? arg.level : "debug",
-    message = arg && arg.message ? arg.message : arg
+    message =
+      arg && (arg.event || arg.message) ? arg.message : arg
 
   if (levels.indexOf(prop[0]) > -1) {
     level = prop[0]
