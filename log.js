@@ -105,7 +105,7 @@ function log(prop, arg, dot, e) {
 function defaultLevel() {
   return typeof process !== "undefined" &&
     process.env &&
-    process.env.LEVEL
-    ? process.env.LEVEL
+    process.env.LOG
+    ? process.env.LOG
     : "info"
 }
