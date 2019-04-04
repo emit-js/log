@@ -23,24 +23,26 @@ This creates the `emit.log` emitter.
 
 There are five log levels: `debug`, `trace`, `info`, `warn`, and `error`.
 
-By default, the logger only logs `info` or above, but you can change that with `logLevel`:
+By default, the logger only logs `warn` or above, but you can change that with `logLevel`:
 
 ```js
 emit("logLevel", { arg: "debug" })
 ```
 
-## Automatic logging
+You could also set the environment variable `LOG=debug`.
 
-By default, the logger logs any and all events at log level `info`.
+## Logs all events
 
-If your event is very noisy, you might want to opt to alias `info` logs to `debug` for that particular event:
+By default, the logger logs all events at log level `debug`.
+
+You might want to change `debug` logs to `info` for certain events:
 
 ```js
-emit("logLevel", "myEvent", { info: "debug" })
+emit("logLevel", "myEvent", { debug: "info" })
 ```
 
 ## Manual logging
 
 ```js
-emit.log("warn", { arg: "some scary message here" })
+emit.log("warn", { arg: "warning!" })
 ```
