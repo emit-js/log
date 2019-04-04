@@ -1,21 +1,21 @@
 /* eslint-env jest */
 
-var dot,
+var emit,
   log = require("./log")
 
 beforeEach(function() {
-  dot = require("dot-event")()
-  log(dot)
+  emit = require("@emit-js/emit")()
+  log(emit)
 })
 
 test("log", function() {
-  dot("log", "debug")
-  dot("log", "error", "test")
-  dot("log", "info", "test", "hi")
-  dot("log", "trace", "test", {
+  emit("log", "debug")
+  emit("log", "error", "test")
+  emit("log", "info", "test", "hi")
+  emit("log", "trace", "test", {
     event: "event",
     message: "hi",
   })
-  dot("log", "warn", "test", "hi")
-  dot("anything")
+  emit("log", "warn", "test", "hi")
+  emit("anything")
 })

@@ -1,16 +1,16 @@
 /*prettier-ignore*/
 "use strict";
 
-module.exports = function(dot) {
-  if (dot.logLevel) {
+module.exports = function(emit) {
+  if (emit.logLevel) {
     return
   }
 
-  dot.any("logLevel", logLevel)
+  emit.any("logLevel", logLevel)
 }
 
-function logLevel(prop, arg, dot) {
-  var state = dot.state.log
+function logLevel(arg, prop, emit) {
+  var state = emit.state.log
 
   if (prop.length) {
     state.events[prop[0]] = Object.assign(

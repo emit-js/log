@@ -19,12 +19,12 @@ var levelSpaces = {
 
 var levels = ["debug", "trace", "info", "warn", "error"]
 
-module.exports = function(dot) {
-  if (dot.log) {
+module.exports = function(emit) {
+  if (emit.log) {
     return
   }
 
-  dot.state.log = {
+  emit.state.log = {
     events: {
       logLevel: { info: "debug" },
     },
@@ -32,14 +32,15 @@ module.exports = function(dot) {
     levels: levels,
   }
 
-  require("./logAny")(dot)
-  require("./logLevel")(dot)
+  require("./logAny")(emit)
+  require("./logLevel")(emit)
 
-  dot.any("log", log)
+  emit.any("log", log)
 }
 
-function log(prop, arg, dot, e) {
-  var state = dot.state.log
+function log(arg, prop, emit, signal) {
+  var e = signal.event,
+    state = emit.state.log
 
   var event = arg && arg.event ? arg.event : e,
     level = arg && arg.level ? arg.level : "debug",
