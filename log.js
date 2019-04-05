@@ -50,7 +50,7 @@ function log(arg, prop, emit, signal) {
 
   var event =
       custom && arg.event ? arg.event : signal.event,
-    level = "debug",
+    level = "info",
     message = custom ? arg.message : arg
 
   if (custom && arg.level) {
@@ -59,6 +59,8 @@ function log(arg, prop, emit, signal) {
     level = prop[0]
     prop = prop.slice(1)
   }
+
+  // console.log(arg, prop, event, level, message)
 
   var fakeLevel = level,
     levelIndex = levels.indexOf(state.level)

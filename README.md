@@ -44,5 +44,6 @@ emit("logLevel", "myEvent", { debug: "info" })
 ## Manual logging
 
 ```js
+emit.log("logs at info by default")
 emit.log("warn", "warning!")
 ```

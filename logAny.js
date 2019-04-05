@@ -12,11 +12,12 @@ function logAny(arg, prop, emit, signal) {
     return
   }
 
-  var level = arg ? arg.level : undefined
-  var message = arg ? arg.message || arg : arg
+  var level = arg && arg.level ? arg.level : "debug"
+  var message = arg && arg.message ? arg.message : arg
 
-  emit("log", level, prop, {
+  emit("log", prop, {
     event: event,
+    level: level,
     message: message,
   })
 }
