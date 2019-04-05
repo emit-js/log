@@ -30,6 +30,7 @@ module.exports = function(emit) {
     },
     level: defaultLevel(),
     levels: levels,
+    time: false,
   }
 
   require("./logAny")(emit)
@@ -82,10 +83,13 @@ function log(arg, prop, emit, signal) {
       ? levelSpaces[fakeLevel]
       : ""
 
-  var out = [
-    new Date().toISOString(),
-    levelEmojis[fakeLevel] + space,
-  ]
+  var out = []
+
+  if (state.time) {
+    out.push(new Date().toISOString())
+  }
+
+  out.push(levelEmojis[fakeLevel] + space)
 
   if (event) {
     out.push("[" + event + "]")

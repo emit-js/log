@@ -26,7 +26,7 @@ There are five log levels: `debug`, `trace`, `info`, `warn`, and `error`.
 By default, the logger only logs `warn` or above, but you can change that with `logLevel`:
 
 ```js
-emit("logLevel", { arg: "debug" })
+emit("logLevel", "debug")
 ```
 
 You could also set the environment variable `LOG=debug`.
@@ -44,5 +44,5 @@ emit("logLevel", "myEvent", { debug: "info" })
 ## Manual logging
 
 ```js
-emit.log("warn", { arg: "warning!" })
+emit.log("warn", "warning!")
 ```
