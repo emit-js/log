@@ -10,12 +10,13 @@ beforeEach(function() {
 
 test("log", function() {
   emit("log", "debug")
-  emit("log", "error", "test")
-  emit("log", "info", "test", "hi")
+  emit("log", "error", "p1")
+  emit("log", "info", "p1", "p2", "hi")
   emit("log", "trace", "test", {
     event: "event",
     message: "hi",
   })
-  emit("log", "warn", "test", "hi")
+  emit("log", "warn", "hi")
   emit("anything")
+  emit()
 })

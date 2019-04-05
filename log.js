@@ -39,15 +39,22 @@ module.exports = function(emit) {
 }
 
 function log(arg, prop, emit, signal) {
-  var e = signal.event,
-    state = emit.state.log
+  var state = emit.state.log
 
-  var event = arg && arg.event ? arg.event : e,
-    level = arg && arg.level ? arg.level : "debug",
-    message =
-      arg && (arg.event || arg.message) ? arg.message : arg
+  var custom =
+    arg &&
+    (arg.hasOwnProperty("event") ||
+      arg.hasOwnProperty("level") ||
+      arg.hasOwnProperty("message"))
 
-  if (levels.indexOf(prop[0]) > -1) {
+  var event =
+      custom && arg.event ? arg.event : signal.event,
+    level = "debug",
+    message = custom ? arg.message : arg
+
+  if (custom && arg.level) {
+    level = arg.level
+  } else if (levels.indexOf(prop[0]) > -1) {
     level = prop[0]
     prop = prop.slice(1)
   }
